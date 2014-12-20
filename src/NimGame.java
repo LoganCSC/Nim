@@ -2,12 +2,15 @@ import java.util.Scanner;
 
 public class NimGame {
 
+
     /** alternates between players asking them how many sticks they want to pick up */
     public void startPlaying() {
         System.out.println("JAVA NIM");
         boolean playing = true;
+        Scanner scanna = new Scanner(System.in);
+
         do {
-            Scanner scanna = new Scanner(System.in);
+
             boolean won = false;
             boolean player1Playing = true;
             int turnCount = 1;
@@ -53,7 +56,7 @@ public class NimGame {
         } while(playing);
     }
 
-    public void printSticks(Integer input) {
+    public void printSticks(int input) {
         for (int i=0; i < input; i++) {
             System.out.print("|");
         }
