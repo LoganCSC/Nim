@@ -31,7 +31,11 @@ class NimGameState {
         stickCount -= numSticksToPickUp;
         stickCount = Math.max(0, stickCount);
         turnCount++;
-        return (stickCount <= 0);
+        return (stickCount == 0);
+    }
+
+    boolean isGameOver() {
+        return stickCount == 0;
     }
 
 }

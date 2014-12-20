@@ -39,6 +39,7 @@ public class NimGameStateTest {
         assertEquals("Unexpected number of sticks",
                 0, state.getNumSticksRemaining());
         assertTrue(won);
+        assertTrue(state.isGameOver());
     }
 
     @Test
@@ -57,6 +58,15 @@ public class NimGameStateTest {
         state.pickUpSticks(2);
         assertEquals("Unexpected turnCount after 3 more moves",
                 4, state.getTurnCount());
+    }
+
+    @Test
+    public void testIsGameOver()  {
+        assertFalse(state.isGameOver());
+        state.pickUpSticks(20);
+        assertFalse(state.isGameOver());
+        state.pickUpSticks(10);
+        assertTrue(state.isGameOver());
     }
 
 }

@@ -17,40 +17,46 @@ public class NimGame {
     }
 
     private boolean playGame() {
-        boolean won = false;
-        boolean playing = true;
+        boolean playing;
         Scanner scanna = new Scanner(System.in);
         NimGameState state = new NimGameState();
 
         do {
-            System.out.print("Turn " + state.getTurnCount() + "; Player ");
-            String player = state.isPlayer1()?  "1" : "2";
-            System.out.println(player);
+            playing = doPlayerTurn(scanna, state);
 
-            printSticks(state.getNumSticksRemaining());
-            System.out.print("How many sticks would you like to pick? ");
-            Integer input = scanna.nextInt();
-            if (input > 0 && input <= MAX_STICKS_PICKED) {
-                won = state.pickUpSticks(input);
+        } while (playing && !state.isGameOver());
 
-                if (won) {
-                    System.out.println("Player " + player + " Won!");
-                    System.out.print("Do you want to play again? (y/n) ");
-                    Character pInput = scanna.next().charAt(0);
-                    if (pInput == 'n' || pInput == 'N') {
-                        playing = false;
-                    }
-                }
-                else {
-                    state.switchToNextPlayer();
+        return playing;
+    }
+
+    private boolean doPlayerTurn(Scanner scanna, NimGameState state) {
+        boolean won;
+        boolean playing = true;
+        System.out.print("Turn " + state.getTurnCount() + "; Player ");
+        String player = state.isPlayer1()?  "1" : "2";
+        System.out.println(player);
+
+        printSticks(state.getNumSticksRemaining());
+        System.out.print("How many sticks would you like to pick? ");
+        Integer input = scanna.nextInt();
+        if (input > 0 && input <= MAX_STICKS_PICKED) {
+            won = state.pickUpSticks(input);
+
+            if (won) {
+                System.out.println("Player " + player + " Won!");
+                System.out.print("Do you want to play again? (y/n) ");
+                Character pInput = scanna.next().charAt(0);
+                if (pInput == 'n' || pInput == 'N') {
+                    playing = false;
                 }
             }
             else {
-                System.out.println("Please pick a value between 1 and 3!");
+                state.switchToNextPlayer();
             }
-
-        } while (playing && !won);
-
+        }
+        else {
+            System.out.println("Please pick a value between 1 and 3!");
+        }
         return playing;
     }
 
