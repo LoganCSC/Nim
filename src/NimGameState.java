@@ -38,4 +38,8 @@ class NimGameState {
         return stickCount == 0;
     }
 
+    String getCurrentPlayer() {
+        return isPlayer1() ?  "1" : "2";
+    }
+
 }
