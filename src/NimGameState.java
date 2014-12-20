@@ -29,6 +29,7 @@ class NimGameState {
      */
     boolean pickUpSticks(int numSticksToPickUp) {
         stickCount -= numSticksToPickUp;
+        stickCount = Math.max(0, stickCount);
         turnCount++;
         return (stickCount <= 0);
     }
