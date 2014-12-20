@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class NimGame {
 
-
     /** alternates between players asking them how many sticks they want to pick up */
     public void startPlaying() {
         System.out.println("JAVA NIM");
@@ -11,37 +10,24 @@ public class NimGame {
 
         do {
 
+            NimGameState state = new NimGameState();
             boolean won = false;
-            boolean player1Playing = true;
-            int turnCount = 1;
-            int stickCount = 26;
             do {
-                System.out.print("Turn " + turnCount + "; Player ");
-                turnCount++;
-                if (player1Playing) {
-                    System.out.print("1\n");
-                }
-                else {
-                    System.out.print("2\n");
-                }
-                printSticks(stickCount);
+                System.out.print("Turn " + state.getTurnCount() + "; Player ");
+                String player = state.isPlayer1()?  "1" : "2";
+                System.out.println(player);
+
+                printSticks(state.getNumSticksRemaining());
                 System.out.print("How many sticks would you like to pick? ");
                 Integer input = scanna.nextInt();
                 if (input > 0 && input < 4) {
-                    stickCount -= input;
-                    if (stickCount == 0) {
-                        won = true;
-                    }
+                    won = state.pickUpSticks(input);
+
                     if (!won) {
-                        player1Playing = !player1Playing;
+                        state.switchToNextPlayer();
                     }
                     else {
-                        if (player1Playing) {
-                            System.out.println("Player 1 Won!");
-                        }
-                        else {
-                            System.out.println("Player 2 Won!");
-                        }
+                        System.out.println("Player " + player + " Won!");
                         System.out.print("Do you want to play again? (y/n) ");
                         Character pInput = scanna.next().charAt(0);
                         if (pInput == 'n' || pInput == 'N') {
@@ -52,8 +38,8 @@ public class NimGame {
                 else {
                     System.out.println("Please pick a value between 1 and 3!");
                 }
-            } while(playing && !won);
-        } while(playing);
+            } while (playing && !won);
+        } while (playing);
     }
 
     public void printSticks(int input) {
