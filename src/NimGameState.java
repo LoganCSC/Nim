@@ -24,7 +24,7 @@ class NimGameState {
     }
 
     /**
-     * @param numSticksToPickUp   the number of stick to pick up
+     * @param numSticksToPickUp  the number of stick to pick up
      * @return true if the player whose current turn it is just won.
      */
     boolean pickUpSticks(int numSticksToPickUp) {
