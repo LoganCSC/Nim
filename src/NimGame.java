@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class NimGame {
 	public static void printSticks(Integer input) {
-        for(int i=0; i < input; i++) {
+        for (int i=0; i < input; i++) {
             System.out.print("|");
         }
         System.out.println("");
@@ -20,7 +20,7 @@ public class NimGame {
 			do {
 				System.out.print("Turn " + turnCount + "; Player ");
 				turnCount++;
-				if(player1Playing) {
+				if (player1Playing) {
 					System.out.print("1\n");
 				}
 				else {
@@ -28,30 +28,25 @@ public class NimGame {
 				}
 		        printSticks(stickCount);
 		        System.out.print("How many sticks would you like to pick? ");
-		        Integer input = new Integer(scanna.nextInt());
+		        Integer input = scanna.nextInt();
 		        if (input > 0 && input < 4) {
 		            stickCount -= input;
 		            if (stickCount == 0) {
 		                won = true;
 		            }
-		            if(won == false) {
-		                if(player1Playing) {
-		                    player1Playing = false;
-		                }
-		                else {
-		                    player1Playing = true;
-		                }
+		            if (!won) {
+                        player1Playing = !player1Playing;
 		            }
 		            else {
-		            	if(player1Playing) {
+		            	if (player1Playing) {
 		                    System.out.println("Player 1 Won!");
 		                }
 		                else {
 		                    System.out.println("Player 2 Won!");
 		                }
 		                System.out.print("Do you want to play again? (y/n) ");
-		        		Character pInput = new Character(scanna.next().charAt(0));
-		        		if(pInput == 'n' || pInput == 'n') {
+		        		Character pInput = scanna.next().charAt(0);
+		        		if (pInput == 'n' || pInput == 'N') {
 		        			playing = false;
 		        		}
 		            }
