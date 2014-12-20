@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class NimGame {
 
+    /** the maximum number of sticks that a player can pick up at once */
+    private static final int MAX_STICKS_PICKED = 3;
+
     /** alternates between players asking them how many sticks they want to pick up */
     public void startPlaying() {
         System.out.println("JAVA NIM");
@@ -27,7 +30,7 @@ public class NimGame {
             printSticks(state.getNumSticksRemaining());
             System.out.print("How many sticks would you like to pick? ");
             Integer input = scanna.nextInt();
-            if (input > 0 && input < 4) {
+            if (input > 0 && input <= MAX_STICKS_PICKED) {
                 won = state.pickUpSticks(input);
 
                 if (won) {
