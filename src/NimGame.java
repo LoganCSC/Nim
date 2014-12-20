@@ -30,16 +30,16 @@ public class NimGame {
             if (input > 0 && input < 4) {
                 won = state.pickUpSticks(input);
 
-                if (!won) {
-                    state.switchToNextPlayer();
-                }
-                else {
+                if (won) {
                     System.out.println("Player " + player + " Won!");
                     System.out.print("Do you want to play again? (y/n) ");
                     Character pInput = scanna.next().charAt(0);
                     if (pInput == 'n' || pInput == 'N') {
                         playing = false;
                     }
+                }
+                else {
+                    state.switchToNextPlayer();
                 }
             }
             else {
