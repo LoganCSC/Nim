@@ -65,7 +65,7 @@ public class NimGame {
     private int getNumSticksToPick() {
         System.out.print("How many sticks would you like to pick? ");
         int num = scanner.nextInt();
-        while (num > 0 && num <= MAX_STICKS_PICKED) {
+        while (num <= 0 || num > MAX_STICKS_PICKED) {
             System.out.println("Please pick a value between 1 and 3!");
             num = scanner.nextInt();
         }
@@ -84,7 +84,6 @@ public class NimGame {
         }
         System.out.println("");
     }
-
 
     public static void main(String[] args) {
          new NimGame().startPlaying();
