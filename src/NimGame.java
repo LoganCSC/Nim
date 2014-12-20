@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class nim_game {
+public class NimGame {
 	public static void printSticks(Integer input) {
         for(int i=0; i < input; i++) {
             System.out.print("|");
         }
         System.out.println("");
     }
-    
+
 	public static void main(String[] args) {
 		System.out.println("JAVA NIM v1");
 		boolean playing = true;
@@ -31,7 +31,7 @@ public class nim_game {
 		        Integer input = new Integer(scanna.nextInt());
 		        if (input > 0 && input < 4) {
 		            stickCount -= input;
-		            if(stickCount = 0) {
+		            if (stickCount == 0) {
 		                won = true;
 		            }
 		            if(won == false) {
