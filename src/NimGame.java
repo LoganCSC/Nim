@@ -1,16 +1,10 @@
 import java.util.Scanner;
 
 public class NimGame {
-    public static void printSticks(Integer input) {
-        for (int i=0; i < input; i++) {
-            System.out.print("|");
-        }
-        System.out.println("");
-    }
 
-    public static void main(String[] args) {
-
-        System.out.println("JAVA NIM v1");
+    /** alternates between players asking them how many sticks they want to pick up */
+    public void startPlaying() {
+        System.out.println("JAVA NIM");
         boolean playing = true;
         do {
             Scanner scanna = new Scanner(System.in);
@@ -57,5 +51,17 @@ public class NimGame {
                 }
             } while(playing && !won);
         } while(playing);
+    }
+
+    public void printSticks(Integer input) {
+        for (int i=0; i < input; i++) {
+            System.out.print("|");
+        }
+        System.out.println("");
+    }
+
+
+    public static void main(String[] args) {
+         new NimGame().startPlaying();
     }
 }
