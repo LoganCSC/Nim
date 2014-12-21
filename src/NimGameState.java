@@ -11,7 +11,7 @@ class NimGameState {
         return player1Playing;
     }
 
-    void switchToNextPlayer()  {
+    void advanceToNextPlayer()  {
         player1Playing = !player1Playing;
     }
 

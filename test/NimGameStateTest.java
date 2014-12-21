@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class NimGameStateTest {
 
+    /** this is the thing begin tested */
     private NimGameState state = new NimGameState();
 
 
@@ -45,7 +46,7 @@ public class NimGameStateTest {
     @Test
     public void testSwitchToNextPlayer()  {
         assertTrue(state.isPlayer1());
-        state.switchToNextPlayer();
+        state.advanceToNextPlayer();
         assertFalse(state.isPlayer1());
     }
 
@@ -67,6 +68,13 @@ public class NimGameStateTest {
         assertFalse(state.isGameOver());
         state.pickUpSticks(10);
         assertTrue(state.isGameOver());
+    }
+
+    @Test
+    public void testGetCurrentPlayer()  {
+        assertEquals("1", state.getCurrentPlayer());
+        state.advanceToNextPlayer();
+        assertEquals("2", state.getCurrentPlayer());
     }
 
 }

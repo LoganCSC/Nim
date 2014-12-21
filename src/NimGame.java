@@ -5,7 +5,7 @@ public class NimGame {
     /** the maximum number of sticks that a player can pick up at once */
     private static final int MAX_STICKS_PICKED = 3;
 
-    /** Scatter used to retrieve player text input */
+    /** Scanner used to retrieve player text input */
     private Scanner scanner;
 
 
@@ -24,15 +24,15 @@ public class NimGame {
      * @return true if the player has requested to play again.
      */
     private boolean playGame() {
-        boolean playing;
+        boolean continuePlaying;
         scanner = new Scanner(System.in);
         NimGameState state = new NimGameState();
 
         do {
-            playing = doPlayerTurn(state);
-        } while (playing && !state.isGameOver());
+            continuePlaying = doPlayerTurn(state);
+        } while (continuePlaying && !state.isGameOver());
 
-        return playing;
+        return continuePlaying;
     }
 
     /**
@@ -40,20 +40,20 @@ public class NimGame {
      * @return true if play it to continue
      */
     private boolean doPlayerTurn(NimGameState state) {
-        boolean playing = true;
+        boolean continuePlaying = true;
         showTurnInfo(state);
         int numSticksToPick = getNumSticksToPick();
         boolean won = state.pickUpSticks(numSticksToPick);
 
         if (won) {
             System.out.println("Player " + state.getCurrentPlayer() + " Won!");
-            playing = askToPlayAgain();
+            continuePlaying = askToPlayAgain();
         }
         else {
-            state.switchToNextPlayer();
+            state.advanceToNextPlayer();
         }
 
-        return playing;
+        return continuePlaying;
     }
 
     private void showTurnInfo(NimGameState state) {
@@ -66,7 +66,7 @@ public class NimGame {
         System.out.print("How many sticks would you like to pick? ");
         int num = scanner.nextInt();
         while (num <= 0 || num > MAX_STICKS_PICKED) {
-            System.out.println("Please pick a value between 1 and 3!");
+            System.out.println("Please pick a value between 1 and " + MAX_STICKS_PICKED + "!");
             num = scanner.nextInt();
         }
         return num;
@@ -78,8 +78,8 @@ public class NimGame {
         return (pInput == 'y' || pInput == 'Y');
     }
 
-    public void printSticks(int input) {
-        for (int i=0; i < input; i++) {
+    public void printSticks(int numSticks) {
+        for (int i=0; i < numSticks; i++) {
             System.out.print("|");
         }
         System.out.println("");
