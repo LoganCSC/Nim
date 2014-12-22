@@ -12,11 +12,9 @@ public class NimGame {
     /** alternates between players asking them how many sticks they want to pick up */
     public void startPlaying() {
         System.out.println("JAVA NIM");
-        boolean playAnother;
 
-        do {
-            playAnother = playGame();
-        } while (playAnother);
+        while (playGame()) {
+        }
     }
 
     /**
